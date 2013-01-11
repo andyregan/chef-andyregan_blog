@@ -9,6 +9,8 @@
 
 include_recipe "nginx"
 
+directory '/srv/www'
+
 nginx_site node['andyregan_blog']['server_name'] do
   template "nginx_site.conf.erb"
   action :enable

@@ -9,9 +9,11 @@
 
 include_recipe "git"
 
-directory '/srv/www'
+directory node['andyregan_blog']['deploy_dir'] do
+  recursive "true"
+end
 
-git node['andyregan_blog']['docroot'] do
+git node['andyregan_blog']['deploy_dir'] do
   repository "git://github.com/andyregan/andyregan.net.git"
   reference "master"
   revision "HEAD"
