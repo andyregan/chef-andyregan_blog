@@ -9,6 +9,8 @@
 
 include_recipe "git"
 
+directory '/srv/www'
+
 git node['andyregan_blog']['docroot'] do
   repository "git://github.com/andyregan/andyregan.net.git"
   reference "master"

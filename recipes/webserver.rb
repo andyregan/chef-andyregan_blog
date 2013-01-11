@@ -9,10 +9,7 @@
 
 include_recipe "nginx"
 
-directory node['andyregan_blog']['docroot']
-
 nginx_site node['andyregan_blog']['server_name'] do
-  template "nginx/nginx_site.conf.erb"
+  template "nginx_site.conf.erb"
   action :enable
 end
-
