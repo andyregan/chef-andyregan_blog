@@ -10,7 +10,7 @@
 include_recipe "git"
 
 directory node['andyregan_blog']['deploy_dir'] do
-  recursive "true"
+  recursive true
 end
 
 git node['andyregan_blog']['deploy_dir'] do
