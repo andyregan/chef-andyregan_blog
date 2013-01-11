@@ -18,3 +18,7 @@ end
 nginx_site node['andyregan_blog']['server_name'] do
   action :enable
 end
+
+nginx_load_balancer do
+  only_if { node['roles'].include?('andyregan_blog_load_balancer') }
+end
