@@ -2,9 +2,9 @@
 
 server {
   listen 80;
-  server_name <%= @params['server_name'] %> ;
-  root <%= @params['docroot'] %>;
-  access_log /var/log/nginx/<%= @params['server_name'] %>.access.log;
-  error_log /var/log/nginx/<%= @params['server_name'] %>.error.log;
+  server_name <%= node['andyregan_blog']['server_name'] %> ;
+  root <%= node['andyregan_blog']['docroot'] %>;
+  access_log /var/log/nginx/<%= node['andyregan_blog']['server_name'] %>.access.log;
+  error_log /var/log/nginx/<%= node['andyregan_blog']['server_name'] %>.error.log;
   index index.html ;
 }
