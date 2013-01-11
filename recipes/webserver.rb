@@ -11,7 +11,7 @@ include_recipe "nginx"
 
 directory '/srv/www'
 
-template "/etc/nginx/sites-available/#{node['andyregan_blog']['server_name']}.conf" do
+template "/etc/nginx/sites-available/#{node['andyregan_blog']['server_name']}" do
   source "nginx_site.conf.erb"
 end
 

@@ -2,9 +2,9 @@
 
 server {
   listen 80;
-  server_name {%= @params['server_name'] %} ;
-  root {%= @params['docroot'] %};
-  access_log /var/log/nginx/{%= @params['server_name'] %}.access.log;
-  error_log /var/log/nginx/{%= @params['server_name'] %}.error.log;
+  server_name <%= @params['server_name'] %> ;
+  root <%= @params['docroot'] %>;
+  access_log /var/log/nginx/<%= @params['server_name'] %>.access.log;
+  error_log /var/log/nginx/<%= @params['server_name'] %>.error.log;
   index index.html ;
 }
