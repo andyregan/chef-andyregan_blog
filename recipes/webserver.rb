@@ -8,7 +8,7 @@
 #
 
 include_recipe "nginx"
-include_recipe "application_nginx"
+require "application_nginx"
 
 directory '/srv/www'
 
