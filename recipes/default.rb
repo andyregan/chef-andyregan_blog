@@ -7,7 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 include_recipe "git"
-include_recipe "nginx"
 
 application_name = "andyregan_blog"
 app_node = node[application_name]
@@ -28,21 +27,25 @@ application application_name do
     end
 end
 
+if node['roles'].include?("#{application_name}_application_server")
+  include_recipe "nginx"
+
+  template "/etc/nginx/sites-available/#{application_name}.conf" do
+    only_if { node['roles'].include?("#{application_name}_application_server") }
+    source "nginx_site.conf.erb"
+  end
+
+  nginx_site "#{application_name}.conf" do
+    only_if { node['roles'].include?("#{application_name}_application_server") }
+    action :enable
+  end
+end
+
 nginx_site "000-default" do
   enable false
 end
 
 nginx_site "default" do
     enable false
-end
-
-template "/etc/nginx/sites-available/#{application_name}.conf" do
-  only_if { node['roles'].include?("#{application_name}_application_server") }
-  source "nginx_site.conf.erb"
-end
-
-nginx_site "#{application_name}.conf" do
-  only_if { node['roles'].include?("#{application_name}_application_server") }
-  action :enable
 end
 
