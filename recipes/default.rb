@@ -21,10 +21,10 @@ application application_name do
     revision app_node[:revision]
 
     nginx_load_balancer do
+        only_if { node['roles'].include?("#{application_name}_load_balancer") }
         application_port app_node[:application_port]
         server_name app_node[:server_name]
         port app_node[:port]
-        only_if { node['roles'].include?("#{application_name}_load_balancer") }
     end
 end
 
@@ -36,13 +36,13 @@ nginx_site "default" do
     enable false
 end
 
-template "/etc/nginx/sites-available/#{node['andyregan_blog']['server_name']}.conf" do
-  source "nginx_site.conf.erb"
+template "/etc/nginx/sites-available/#{application_name}.conf" do
   only_if { node['roles'].include?("#{application_name}_application_server") }
+  source "nginx_site.conf.erb"
 end
 
-nginx_site "#{node['andyregan_blog']['server_name']}.conf" do
-  action :enable
+nginx_site "#{application_name}.conf" do
   only_if { node['roles'].include?("#{application_name}_application_server") }
+  action :enable
 end
 
