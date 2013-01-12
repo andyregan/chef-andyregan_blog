@@ -36,12 +36,12 @@ nginx_site "default" do
     enable false
 end
 
-template "/etc/nginx/sites-available/#{node['andyregan_blog']['server_name']}" do
+template "/etc/nginx/sites-available/#{node['andyregan_blog']['server_name']}.conf" do
   source "nginx_site.conf.erb"
   only_if { node['roles'].include?("#{application_name}_application_server") }
 end
 
-nginx_site node['andyregan_blog']['server_name'] do
+nginx_site "#{node['andyregan_blog']['server_name']}.conf" do
   action :enable
   only_if { node['roles'].include?("#{application_name}_application_server") }
 end

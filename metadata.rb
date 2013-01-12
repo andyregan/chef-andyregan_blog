@@ -3,7 +3,7 @@ maintainer_email "andrew@andyregan.net"
 license          "All rights reserved"
 description      "Installs/Configures andyregan_blog"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.1.17"
+version          "0.1.18"
 depends          "application"
 depends          "application_nginx"
 depends          "git"
